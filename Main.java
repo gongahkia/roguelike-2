@@ -21,7 +21,6 @@ public class Main {
             moveUser(input, userStartPosition, minX, maxX, minY, maxY);
             input = readUserInput();
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
-            clearScreen();
 
         } 
 
@@ -89,11 +88,6 @@ public class Main {
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
         return (x >= minX && x <= maxX && y >= minY && y <= maxY);
-    }
-
-    public static void clearScreen(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 
 }
