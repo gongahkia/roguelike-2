@@ -52,10 +52,12 @@ public class Main {
     public static String[] createScreen(Integer[] userStartPosition){
         Integer userX = userStartPosition[0];
         Integer userY = userStartPosition[1];
+        Integer maxX = 10;
+        Integer maxY = 10;
         String rowBuffer = "";
         String[] screenBuffer = new String[10];
-        for (int y=0; y<10; y++){
-            for (int x=0; x<10; x++){
+        for (int y=0; y<maxY; y++){
+            for (int x=0; x<maxX; x++){
                 if (x == userX && y == userY){
                     rowBuffer += "P";
                 } else {
