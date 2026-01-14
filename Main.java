@@ -15,13 +15,13 @@ public class Main {
 
         while (!input.equals("q")){
 
+            moveUser(input, userStartPosition, minX, maxX, minY, maxY);
+            input = readUserInput(sc);
+            drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
             System.out.println("~Roguelike 2~");
             System.out.println("Use WASD to move, Q to quit.");
             // System.out.println(input);
-            // System.out.println(userStartPosition[0] + ", " + userStartPosition[1]);
-            moveUser(input, userStartPosition, minX, maxX, minY, maxY);
-            input = readUserInput();
-            drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
+            System.out.println("User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
 
         } 
 
@@ -64,10 +64,9 @@ public class Main {
     public static String[] createScreen(Integer[] userStartPosition, Integer minX, Integer maxX, Integer minY, Integer maxY){
         Integer userX = userStartPosition[0];
         Integer userY = userStartPosition[1];
-        String rowBuffer = "";
         String[] screenBuffer = new String[10];
         for (int y=minY; y<maxY; y++){
-            rowBuffer = "";
+            String rowBuffer = "";
             for (int x=minX; x<maxX; x++){
                 if (x == userX && y == userY){
                     rowBuffer += "P";
@@ -75,7 +74,7 @@ public class Main {
                     rowBuffer += ".";
                 }
             }
-            screenBuffer[y] = rowBuffer;
+            screenBuffer[y-minY] = rowBuffer;
         }
         return screenBuffer;
     }
@@ -87,7 +86,7 @@ public class Main {
     }
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
-        return (x >= minX && x <= maxX && y >= minY && y <= maxY);
+        return (x >= minX && x < maxX && y >= minY && y < maxY);
     }
 
 }
