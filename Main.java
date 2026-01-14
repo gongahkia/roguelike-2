@@ -4,11 +4,11 @@ public class Main {
 
     public static void main(String[] args){
 
-        Integer[] userStartPosition = {0,0};
-        Integer minX = 0;
-        Integer maxX = 10;
-        Integer minY = 0;
-        Integer maxY = 10;
+        Integer[] userStartPosition = {1,1};
+        Integer minX = 1;
+        Integer maxX = 11;
+        Integer minY = 1;
+        Integer maxY = 11;
 
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
