@@ -14,7 +14,7 @@ public class Main {
 
         String input = readUserInput();
 
-        while (!input.equals('q')){
+        while (!input.equals("q")){
 
             System.out.println(input);
             System.out.println(userStartPosition[0] + ", " + userStartPosition[1]);
