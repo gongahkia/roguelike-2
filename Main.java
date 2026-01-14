@@ -13,6 +13,7 @@ public class Main {
             System.out.println(userStartPosition);
             moveUser(input, userStartPosition);
             input = readUserInput();
+            drawScreen(userStartPosition);
         } 
 
     }
@@ -43,6 +44,24 @@ public class Main {
                 break;
         }
         return userPosition;     
+    }
+
+    public static String[] drawScreen(Integer[] userStartPosition){
+        Integer userX = userStartPosition[0];
+        Integer userY = userStartPosition[1];
+        String rowBuffer = "";
+        String[] screenBuffer = new String[10];
+        for (int y=0; y<10; y++){
+            for (int x=0; x<10; x++){
+                if (x == userX && y == userY){
+                    rowBuffer += "P";
+                } else {
+                    rowBuffer += ".";
+                }
+            }
+            screenBuffer[y] = rowBuffer;
+        }
+        return screenBuffer;
     }
 
 }
