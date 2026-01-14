@@ -1,0 +1,8 @@
+random room generation
+fog of war
+health and speed potion
+monster generation
+random event occurence
+bossfight
+ascii art logo
+seperate code into proper classes
