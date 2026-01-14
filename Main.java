@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args){
 
         Integer[] userStartPosition = {1,1};
+        Integer userSpeed = 1;
         Integer minX = 1;
         Integer maxX = 11;
         Integer minY = 1;
@@ -16,7 +17,7 @@ public class Main {
 
         while (!input.equals("q")){
 
-            moveUser(input, userStartPosition, minX, maxX, minY, maxY);
+            moveUser(input, userStartPosition, userSpeed,  minX, maxX, minY, maxY);
             input = readUserInput(sc);
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
@@ -32,26 +33,26 @@ public class Main {
         return userInput;
     }
 
-    public static Integer[] moveUser(String input, Integer[] userPosition, Integer minX, Integer maxX, Integer minY, Integer maxY){
+    public static Integer[] moveUser(String input, Integer[] userPosition, Integer userSpeed, Integer minX, Integer maxX, Integer minY, Integer maxY){
         switch (input){
             case "w": // up
-                if (checkBounds(userPosition[0], userPosition[1] + 1, minX, maxX, minY, maxY)){
-                    userPosition[1] += 1;
+                if (checkBounds(userPosition[0], userPosition[1] + userSpeed, minX, maxX, minY, maxY)){
+                    userPosition[1] += userSpeed;
                 }
                 break;
             case "a": // left
-                if (checkBounds(userPosition[0] - 1, userPosition[1], minX, maxX, minY, maxY)){
-                    userPosition[0] -= 1;
+                if (checkBounds(userPosition[0] - userSpeed, userPosition[1], minX, maxX, minY, maxY)){
+                    userPosition[0] -= userSpeed;
                 }
                 break;
             case "s": // down
-                if (checkBounds(userPosition[0], userPosition[1] - 1, minX, maxX, minY, maxY)){
-                    userPosition[1] -= 1;
+                if (checkBounds(userPosition[0], userPosition[1] - userSpeed, minX, maxX, minY, maxY)){
+                    userPosition[1] -= userSpeed;
                 }
                 break;
             case "d": // right
-                if (checkBounds(userPosition[0] + 1, userPosition[1], minX, maxX, minY, maxY)){
-                    userPosition[0] += 1;
+                if (checkBounds(userPosition[0] + userSpeed, userPosition[1], minX, maxX, minY, maxY)){
+                    userPosition[0] += userSpeed;
                 }
                 break;
             default:
@@ -65,16 +66,21 @@ public class Main {
         Integer userX = userStartPosition[0];
         Integer userY = userStartPosition[1];
         String[] screenBuffer = new String[10];
+
         for (int y=minY; y<maxY; y++){
+
             String rowBuffer = "";
             for (int x=minX; x<maxX; x++){
+
                 if (x == userX && y == userY){
                     rowBuffer += "|P";
                 } else {
                     rowBuffer += "|.";
                 }
             }
+
             screenBuffer[y-minY] = rowBuffer + "|";
+
         }
         return screenBuffer;
     }
