@@ -81,7 +81,7 @@ public class Main {
     }
 
     public static void drawScreen(String[] screenBuffer){
-        for (int i=0; i<screenBuffer.length; i++){
+        for (int i=screenBuffer.length-1; i>=0; i--){
             System.out.println(screenBuffer[i]);
         }
     }
