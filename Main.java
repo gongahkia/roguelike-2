@@ -69,18 +69,19 @@ public class Main {
             String rowBuffer = "";
             for (int x=minX; x<maxX; x++){
                 if (x == userX && y == userY){
-                    rowBuffer += "P";
+                    rowBuffer += "|P";
                 } else {
-                    rowBuffer += ".";
+                    rowBuffer += "|.";
                 }
             }
-            screenBuffer[y-minY] = rowBuffer;
+            screenBuffer[y-minY] = rowBuffer + "|";
         }
         return screenBuffer;
     }
 
     public static void drawScreen(String[] screenBuffer){
         for (int i=screenBuffer.length-1; i>=0; i--){
+            System.out.println("---------------------");
             System.out.println(screenBuffer[i]);
         }
     }
