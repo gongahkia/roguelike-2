@@ -11,6 +11,7 @@ public class Main {
         Integer minY = 1;
         Integer maxY = 11;
         Integer spaceOffset = 10;
+        Integer moveCount = 0;
 
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
@@ -21,6 +22,8 @@ public class Main {
             input = readUserInput(sc);
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
+            moveCount++;
+            drawSpace(spaceOffset); System.out.println("       Moves: " + moveCount);
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
 
