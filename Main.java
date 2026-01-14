@@ -10,14 +10,15 @@ public class Main {
         Integer minY = 0;
         Integer maxY = 10;
 
-        String input = readUserInput();
+        Scanner sc = new Scanner(System.in);
+        String input = readUserInput(sc);
 
         while (!input.equals("q")){
 
             System.out.println("~Roguelike 2~");
             System.out.println("Use WASD to move, Q to quit.");
-            System.out.println(input);
-            System.out.println(userStartPosition[0] + ", " + userStartPosition[1]);
+            // System.out.println(input);
+            // System.out.println(userStartPosition[0] + ", " + userStartPosition[1]);
             moveUser(input, userStartPosition, minX, maxX, minY, maxY);
             input = readUserInput();
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
@@ -26,8 +27,7 @@ public class Main {
 
     }
 
-    public static String readUserInput(){
-        Scanner sc = new Scanner(System.in);
+    public static String readUserInput(Scanner sc){
         String userInput = sc.next();
         return userInput;
     }
