@@ -9,6 +9,7 @@ public class Main {
         Integer maxX = 11;
         Integer minY = 1;
         Integer maxY = 11;
+        Integer spaceOffset = 10;
 
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
@@ -17,11 +18,10 @@ public class Main {
 
             moveUser(input, userStartPosition, minX, maxX, minY, maxY);
             input = readUserInput(sc);
-            drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
-            System.out.println("~Roguelike 2~");
-            System.out.println("Use WASD to move, Q to quit.");
+            drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
+            drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             // System.out.println(input);
-            System.out.println("User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
+            drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
 
         } 
 
@@ -79,16 +79,22 @@ public class Main {
         return screenBuffer;
     }
 
-    public static void drawScreen(String[] screenBuffer){
+    public static void drawScreen(String[] screenBuffer, Integer offset){
         for (int i=screenBuffer.length-1; i>=0; i--){
-            System.out.println("---------------------");
-            System.out.println(screenBuffer[i]);
+            drawSpace(offset); System.out.println("---------------------");
+            drawSpace(offset); System.out.println(screenBuffer[i]);
         }
-        System.out.println("---------------------");
+        drawSpace(offset); System.out.println("---------------------");
     }
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
         return (x >= minX && x < maxX && y >= minY && y < maxY);
+    }
+
+    public static void drawSpace(Integer offset){
+        for (int i=0; i<offset; i++){
+            System.out.print(" ");
+        }
     }
 
 }
