@@ -84,6 +84,7 @@ public class Main {
             System.out.println("---------------------");
             System.out.println(screenBuffer[i]);
         }
+        System.out.println("---------------------");
     }
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
