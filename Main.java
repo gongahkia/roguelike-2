@@ -67,6 +67,7 @@ public class Main {
         String rowBuffer = "";
         String[] screenBuffer = new String[10];
         for (int y=minY; y<maxY; y++){
+            rowBuffer = "";
             for (int x=minX; x<maxX; x++){
                 if (x == userX && y == userY){
                     rowBuffer += "P";
