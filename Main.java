@@ -4,8 +4,6 @@ public class Main {
 
     public static void main(String[] args){
 
-        System.out.println("~Roguelike 2~");
-        System.out.println("Use WASD to move, Q to quit.");
         Integer[] userStartPosition = {0,0};
         Integer minX = 0;
         Integer maxX = 10;
@@ -16,11 +14,14 @@ public class Main {
 
         while (!input.equals("q")){
 
+            System.out.println("~Roguelike 2~");
+            System.out.println("Use WASD to move, Q to quit.");
             System.out.println(input);
             System.out.println(userStartPosition[0] + ", " + userStartPosition[1]);
             moveUser(input, userStartPosition, minX, maxX, minY, maxY);
             input = readUserInput();
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY));
+            clearScreen();
 
         } 
 
@@ -88,6 +89,11 @@ public class Main {
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
         return (x >= minX && x <= maxX && y >= minY && y <= maxY);
+    }
+
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 }
