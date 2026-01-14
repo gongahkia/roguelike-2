@@ -8,7 +8,7 @@ public class Main {
         Integer[] userStartPosition = {0,0};
 
         String input = readUserInput();
-        while (input != "q"){
+        while (!input.equals('q')){
             System.out.println(input);
             System.out.println(userStartPosition);
             moveUser(input, userStartPosition);
