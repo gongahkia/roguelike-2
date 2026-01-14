@@ -21,7 +21,6 @@ public class Main {
     public static String readUserInput(){
         Scanner sc = new Scanner(System.in);
         String userInput = sc.next();
-        sc.close();
         return userInput;
     }
 
