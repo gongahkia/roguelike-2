@@ -7,6 +7,7 @@ public class Main {
 
         Integer[] userStartPosition = {1,1};
         HashMap<String, Integer> userStats = new HashMap<String, Integer>() {{
+            put("moves", 0);
             put("speed", 1);
             put("health", 1);
         }};
@@ -29,7 +30,6 @@ public class Main {
         Integer minY = 1;
         Integer maxY = 11;
         Integer spaceOffset = 10;
-        Integer moveCount = 0; // can also be used to record clocktick
 
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
@@ -40,8 +40,8 @@ public class Main {
             input = readUserInput(sc);
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
-            moveCount++;
-            drawSpace(spaceOffset); System.out.println("       Moves: " + moveCount);
+            userStats.put("moves", userStats.get("moves") + 1);
+            drawSpace(spaceOffset); System.out.println("       Moves: " + userStats.get("moves"));
             drawSpace(spaceOffset); System.out.println("      Health: " + userStats.get("health"));
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
