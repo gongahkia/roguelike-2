@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Main {
 
@@ -7,6 +8,20 @@ public class Main {
         Integer[] userStartPosition = {1,1};
         Integer userSpeed = 1;
         Integer userHealth = 1;
+        HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
+            put("helmet", 0);
+            put("chestplate", 0);
+            put("leggings", 0);
+            put("boots", 0);
+        }};
+        HashMap<String, Integer> userInventory = new HashMap<String, Integer>() {{
+            put("sword", 0);
+            put("shield", 0);
+            put("healthPotion", 0);
+            put("speedPotion", 0);
+            put("bread", 0);
+        }};
+        
         Integer minX = 1;
         Integer maxX = 11;
         Integer minY = 1;
