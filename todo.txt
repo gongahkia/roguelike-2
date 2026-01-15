@@ -6,3 +6,46 @@ random event occurence
 bossfight
 ascii art logo
 seperate code into proper classes
+create a player class to hold player data
+create a gamemap class to manage the map
+implement a turn-based system
+add items for the player to pick up
+add different types of monsters with simple ai
+implement a combat system
+add a message log to display game events
+create a status bar to show player health and other stats
+implement an inventory system
+add doors and keys
+implement a system for leveling up
+add different types of terrain with different effects
+generate loot after killing monsters
+add a main menu
+save and load game progress
+add a help screen
+add character creation
+add a story or quest system
+implement procedural weapon and armor generation
+add friendly npcs
+implement a shop system
+implement various weapon types with unique properties
+design different armor pieces for defensive stats
+introduce magic spells with diverse effects
+create an experience point system for character progression
+add skill trees for player customization
+develop a quest log to track active missions
+implement a vendor system for buying and selling goods
+add environmental hazards like traps and pits
+introduce blessings and curses
+implement a hunger or thirst mechanic
+add a crafting system for items
+include enchantments for weapons and armor
+design unique boss mechanics for each boss
+implement a minimap feature
+add particle effects for combat and spells
+introduce companions to assist the player
+develop a reputation system with factions
+add procedurally generated dungeon layouts
+implement different biomes for dungeon levels
+allow character customization with cosmetic options
+add a bestiary to track encountered monsters
+implement achievements for player milestones
