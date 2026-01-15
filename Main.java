@@ -6,12 +6,13 @@ public class Main {
 
         Integer[] userStartPosition = {1,1};
         Integer userSpeed = 1;
+        Integer userHealth = 1;
         Integer minX = 1;
         Integer maxX = 11;
         Integer minY = 1;
         Integer maxY = 11;
         Integer spaceOffset = 10;
-        Integer moveCount = 0;
+        Integer moveCount = 0; // can also be used to record clocktick
 
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
@@ -24,6 +25,7 @@ public class Main {
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             moveCount++;
             drawSpace(spaceOffset); System.out.println("       Moves: " + moveCount);
+            drawSpace(spaceOffset); System.out.println("      Health: " + userHealth);
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
 
