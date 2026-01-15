@@ -6,8 +6,10 @@ public class Main {
     public static void main(String[] args){
 
         Integer[] userStartPosition = {1,1};
-        Integer userSpeed = 1;
-        Integer userHealth = 1;
+        HashMap<String, Integer> userStats = new HashMap<String, Integer>() {{
+            put("speed", 1);
+            put("health", 1);
+        }};
         HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
             put("helmet", 0);
             put("chestplate", 0);
@@ -34,13 +36,13 @@ public class Main {
 
         while (!input.equals("q")){
 
-            moveUser(input, userStartPosition, userSpeed,  minX, maxX, minY, maxY);
+            moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
             input = readUserInput(sc);
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             moveCount++;
             drawSpace(spaceOffset); System.out.println("       Moves: " + moveCount);
-            drawSpace(spaceOffset); System.out.println("      Health: " + userHealth);
+            drawSpace(spaceOffset); System.out.println("      Health: " + userStats.get("health"));
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
 
