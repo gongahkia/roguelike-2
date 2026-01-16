@@ -170,8 +170,7 @@ public class Main {
         int x1 = userPosition[0], y1 = userPosition[1];
         int dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
         int sx = x0 < x1 ? 1 : -1;
-        int sy = y0 < y1 ? 1 : -1;
-        int err = dx - dy;
+        String input = readUserInput(sc);
         int cx = x0, cy = y0;
         while (!(cx == x1 && cy == y1)) {
             int e2 = 2 * err;
@@ -183,14 +182,10 @@ public class Main {
         class Node {
             Integer[] pos;
             int g, h;
-            Node parent;
-            Node(Integer[] pos, int g, int h, Node parent) {
-                this.pos = pos;
-                this.g = g;
-                this.h = h;
-                this.parent = parent;
+            // If input is blank (just Enter), treat as a 'wait' (redraw and count as a move)
+            if (!input.trim().isEmpty()) {
+                moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
             }
-            int f() { return g + h; }
         }
 
         java.util.PriorityQueue<Node> open = new java.util.PriorityQueue<>(
@@ -209,7 +204,7 @@ public class Main {
         while (!open.isEmpty() && maxSearch-- > 0) {
             Node current = open.poll();
             String key = current.pos[0] + "," + current.pos[1];
-            if (closed.contains(key)) continue;
+            input = readUserInput(sc); // Read user input
             closed.add(key);
             if (current.pos[0].equals(goal[0]) && current.pos[1].equals(goal[1])) {
                 found = current;
