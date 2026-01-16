@@ -129,31 +129,18 @@ public class Main {
         Integer userY = userStartPosition[1];
         String[] screenBuffer = new String[10];
 
-        for (int y=minY; y<maxY; y++){
-
+        for (int y = minY; y < maxY; y++) {
             String rowBuffer = "";
-            for (int x=minX; x<maxX; x++){
-
-                if (x == userX && y == userY){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enable auto-run mode? (y/n): ");
-        boolean autoRun = sc.next().trim().equalsIgnoreCase("y");
-        String input = autoRun ? "w" : readUserInput(sc); // default move up in auto mode
+            for (int x = minX; x < maxX; x++) {
+                if (x == userX && y == userY) {
+                    rowBuffer += "|P";
+                } else if (x == footSoldierPosition[0] && y == footSoldierPosition[1]) {
                     rowBuffer += "|F";
                 } else {
                     rowBuffer += "|.";
-            if (!autoRun) {
-                moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
-            } else {
-                // In auto mode, move randomly or always up
-                String[] moves = {"w", "a", "s", "d"};
-                input = moves[(int)(Math.random()*4)];
-                moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY);
+                }
             }
-            }
-
-            screenBuffer[y-minY] = rowBuffer + "|";
-
+            screenBuffer[y - minY] = rowBuffer + "|";
         }
         return screenBuffer;
     }
@@ -167,11 +154,7 @@ public class Main {
     }
 
     public static boolean checkBounds(Integer x, Integer y, Integer minX, Integer maxX, Integer minY, Integer maxY){
-            if (!autoRun) {
-                input = readUserInput(sc);
-            } else {
-                try { Thread.sleep(400); } catch (InterruptedException e) { }
-            }
+        return (x >= minX && x < maxX && y >= minY && y < maxY);
     }
 
     public static void drawSpace(Integer offset){
