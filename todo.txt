@@ -1,4 +1,5 @@
 random room generation
+crafting system
 fog of war
 health and speed potion
 monster generation
