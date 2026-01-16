@@ -11,7 +11,7 @@ public class Main {
             put("moves", 0);
             put("speed", 1);
             put("health", 2);
-            put("maxMoves", 100);
+            put("maxMoves", 10);
         }};
         HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
             put("bronzeHelmet", 0);
@@ -75,12 +75,12 @@ public class Main {
             input = readUserInput(sc);
 
             if (userStats.get("moves") >= userStats.get("maxMoves")) { // run out of moves
-                System.out.println("  You have run out of moves!");
+                System.out.println("        You have run out of moves!");
                 input = "q";
             }
 
             if (userStats.get("health") <= 0) { // run out of health
-                System.out.println("  You have run out of health!");
+                System.out.println("        You have run out of health!");
                 input = "q";
             }
 
