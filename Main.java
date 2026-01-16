@@ -13,15 +13,28 @@ public class Main {
             put("maxMoves", 100);
         }};
         HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
-            put("helmet", 0);
-            put("chestplate", 0);
-            put("leggings", 0);
-            put("boots", 0);
+            put("bronzeHelmet", 0);
+            put("bronzeChestplate", 0);
+            put("bronzeLeggings", 0);
+            put("bronzeBoots", 0);
+            put("ironHelmet", 0);
+            put("ironChestplate", 0);
+            put("ironLeggings", 0);
+            put("ironBoots", 0);
+            put("goldHelmet", 0);
+            put("goldChestplate", 0);
+            put("goldLeggings", 0);
+            put("goldBoots", 0);
+            put("diamondHelmet", 0);
+            put("diamondChestplate", 0);            
+            put("diamondLeggings", 0);
+            put("diamondBoots", 0);
         }};
         HashMap<String, Integer> userInventory = new HashMap<String, Integer>() {{
             put("sword", 0);
             put("shield", 0);
             put("bread", 0);
+            put("kebab", 0);
             put("bow", 0);
             put("arrow", 0);
             put("healthPotion", 0);
