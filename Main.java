@@ -170,7 +170,8 @@ public class Main {
         int x1 = userPosition[0], y1 = userPosition[1];
         int dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
         int sx = x0 < x1 ? 1 : -1;
-        String input = readUserInput(sc);
+        int sy = y0 < y1 ? 1 : -1;
+        int err = dx - dy;
         int cx = x0, cy = y0;
         while (!(cx == x1 && cy == y1)) {
             int e2 = 2 * err;
@@ -182,10 +183,14 @@ public class Main {
         class Node {
             Integer[] pos;
             int g, h;
-            // If input is blank (just Enter), treat as a 'wait' (redraw and count as a move)
-            if (!input.trim().isEmpty()) {
-                moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
+            Node parent;
+            Node(Integer[] pos, int g, int h, Node parent) {
+                this.pos = pos;
+                this.g = g;
+                this.h = h;
+                this.parent = parent;
             }
+            int f() { return g + h; }
         }
 
         java.util.PriorityQueue<Node> open = new java.util.PriorityQueue<>(
