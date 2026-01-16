@@ -10,6 +10,7 @@ public class Main {
             put("moves", 0);
             put("speed", 1);
             put("health", 1);
+            put("maxMoves", 100);
         }};
         HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
             put("helmet", 0);
@@ -20,9 +21,12 @@ public class Main {
         HashMap<String, Integer> userInventory = new HashMap<String, Integer>() {{
             put("sword", 0);
             put("shield", 0);
+            put("bread", 0);
+            put("bow", 0);
+            put("arrow", 0);
             put("healthPotion", 0);
             put("speedPotion", 0);
-            put("bread", 0);
+            put("movePotion", 0);
         }};
         
         Integer minX = 1;
@@ -40,11 +44,16 @@ public class Main {
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             userStats.put("moves", userStats.get("moves") + 1);
-            drawSpace(spaceOffset); System.out.println("       Moves: " + userStats.get("moves"));
+            drawSpace(spaceOffset); System.out.println("    Moves: " + userStats.get("moves") + "/" + userStats.get("maxMoves"));
             drawSpace(spaceOffset); System.out.println("      Health: " + userStats.get("health"));
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
             input = readUserInput(sc);
+
+            if (userStats.get("moves") >= userStats.get("maxMoves")){ // run out of moves
+                drawSpace(spaceOffset); System.out.println("  You have run out of moves!");
+                input = "q";
+            }
 
         } 
 
