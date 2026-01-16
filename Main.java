@@ -56,7 +56,6 @@ public class Main {
         while (!input.equals("q")) { // game loop
             moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
 
-            // Foot soldier moves every other turn (on even turns)
             if (turnCounter % 2 == 0) {
                 footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition);
             }
@@ -91,7 +90,7 @@ public class Main {
     }
 
     public static String readUserInput(Scanner sc){
-        String userInput = sc.next();
+        String userInput = sc.nextLine();
         return userInput;
     }
 
@@ -209,7 +208,6 @@ public class Main {
         while (!open.isEmpty() && maxSearch-- > 0) {
             Node current = open.poll();
             String key = current.pos[0] + "," + current.pos[1];
-            input = readUserInput(sc); // Read user input
             closed.add(key);
             if (current.pos[0].equals(goal[0]) && current.pos[1].equals(goal[1])) {
                 found = current;
