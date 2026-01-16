@@ -75,12 +75,12 @@ public class Main {
             input = readUserInput(sc);
 
             if (userStats.get("moves") >= userStats.get("maxMoves")) { // run out of moves
-                drawSpace(spaceOffset); System.out.println("  You have run out of moves!");
+                System.out.println("  You have run out of moves!");
                 input = "q";
             }
 
             if (userStats.get("health") <= 0) { // run out of health
-                drawSpace(spaceOffset); System.out.println("  You have run out of health!");
+                System.out.println("  You have run out of health!");
                 input = "q";
             }
 
