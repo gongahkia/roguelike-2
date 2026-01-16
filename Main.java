@@ -55,6 +55,7 @@ public class Main {
         while (!input.equals("q")){ // game loop
 
             moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
+            footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition); 
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY, footSoldierPosition), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             userStats.put("moves", userStats.get("moves") + 1);
