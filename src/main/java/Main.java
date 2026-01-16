@@ -34,10 +34,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
 
-        while (!input.equals("q")){
+        while (!input.equals("q")){ // game loop
 
             moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
-            input = readUserInput(sc);
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             userStats.put("moves", userStats.get("moves") + 1);
@@ -45,6 +44,7 @@ public class Main {
             drawSpace(spaceOffset); System.out.println("      Health: " + userStats.get("health"));
             // System.out.println(input);
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
+            input = readUserInput(sc);
 
         } 
 
