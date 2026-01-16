@@ -64,7 +64,6 @@ public class Main {
             if (footSoldierPosition[0].equals(userStartPosition[0]) && footSoldierPosition[1].equals(userStartPosition[1])) {
                 System.out.println("      The foot soldier has caught you!");
                 userStats.put("health", userStats.get("health") - 1);
-                break;
             }
 
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY, footSoldierPosition), spaceOffset);
