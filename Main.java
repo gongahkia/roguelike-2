@@ -165,6 +165,21 @@ public class Main {
 
     public static Integer[] moveFootSoldier(Integer[] footSoldierPosition, Integer speed, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] userPosition){
 
+        boolean hasLOS = true;
+        int x0 = footSoldierPosition[0], y0 = footSoldierPosition[1];
+        int x1 = userPosition[0], y1 = userPosition[1];
+        int dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+        int sx = x0 < x1 ? 1 : -1;
+        int sy = y0 < y1 ? 1 : -1;
+        int err = dx - dy;
+        int cx = x0, cy = y0;
+        while (!(cx == x1 && cy == y1)) {
+            int e2 = 2 * err;
+            if (e2 > -dy) { err -= dy; cx += sx; }
+            if (e2 < dx) { err += dx; cy += sy; }
+        }
+        if (!hasLOS) return footSoldierPosition;
+
         class Node {
             Integer[] pos;
             int g, h;
