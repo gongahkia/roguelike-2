@@ -52,12 +52,16 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input = readUserInput(sc);
 
-        while (!input.equals("q")){ // game loop
-
+        int turnCounter = 0;
+        while (!input.equals("q")) { // game loop
             moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
-            footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition); 
 
-            if (footSoldierPosition[0].equals(userStartPosition[0]) && footSoldierPosition[1].equals(userStartPosition[1])){
+            // Foot soldier moves every other turn (on even turns)
+            if (turnCounter % 2 == 0) {
+                footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition);
+            }
+
+            if (footSoldierPosition[0].equals(userStartPosition[0]) && footSoldierPosition[1].equals(userStartPosition[1])) {
                 System.out.println("      The foot soldier has caught you!");
                 userStats.put("health", userStats.get("health") - 1);
                 break;
@@ -72,17 +76,18 @@ public class Main {
             drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
             input = readUserInput(sc);
 
-            if (userStats.get("moves") >= userStats.get("maxMoves")){ // run out of moves
+            if (userStats.get("moves") >= userStats.get("maxMoves")) { // run out of moves
                 drawSpace(spaceOffset); System.out.println("  You have run out of moves!");
                 input = "q";
             }
 
-            if (userStats.get("health") <= 0){ // run out of health
+            if (userStats.get("health") <= 0) { // run out of health
                 drawSpace(spaceOffset); System.out.println("  You have run out of health!");
                 input = "q";
             }
 
-        } 
+            turnCounter++;
+        }
 
     }
 
