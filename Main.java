@@ -10,7 +10,7 @@ public class Main {
         HashMap<String, Integer> userStats = new HashMap<String, Integer>() {{
             put("moves", 0);
             put("speed", 1);
-            put("health", 1);
+            put("health", 2);
             put("maxMoves", 100);
         }};
         HashMap<String, Integer> userArmour = new HashMap<String, Integer>() {{
@@ -56,6 +56,13 @@ public class Main {
 
             moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
             footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition); 
+
+            if (footSoldierPosition[0].equals(userStartPosition[0]) && footSoldierPosition[1].equals(userStartPosition[1])){
+                System.out.println("      The foot soldier has caught you!");
+                userStats.put("health", userStats.get("health") - 1);
+                break;
+            }
+
             drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY, footSoldierPosition), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             userStats.put("moves", userStats.get("moves") + 1);
@@ -67,6 +74,11 @@ public class Main {
 
             if (userStats.get("moves") >= userStats.get("maxMoves")){ // run out of moves
                 drawSpace(spaceOffset); System.out.println("  You have run out of moves!");
+                input = "q";
+            }
+
+            if (userStats.get("health") <= 0){ // run out of health
+                drawSpace(spaceOffset); System.out.println("  You have run out of health!");
                 input = "q";
             }
 
