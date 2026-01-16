@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args){
 
         Integer[] userStartPosition = {1,1};
+        Integer[] userAttackBox = new Integer[]{0,0};
         Integer[] footSoldierPosition = {5,5};
         HashMap<String, Integer> userStats = new HashMap<String, Integer>() {{
             put("moves", 0);
@@ -54,7 +55,11 @@ public class Main {
 
         int turnCounter = 0;
         while (!input.equals("q")) { // game loop
-            moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY); // move user
+
+            Integer[][] userPositions = moveUser(input, userStartPosition, userStats.get("speed"), minX, maxX, minY, maxY, userAttackBox); // move user
+            Integer[] newUserPosition = userPositions[0];
+            Integer[] newUserAttackBox = userPositions[1];
+            userStartPosition = newUserPosition;
 
             if (turnCounter % 2 == 0) {
                 footSoldierPosition = moveFootSoldier(footSoldierPosition, 1, minX, maxX, minY, maxY, userStartPosition);
@@ -65,13 +70,18 @@ public class Main {
                 userStats.put("health", userStats.get("health") - 1);
             }
 
-            drawScreen(createScreen(userStartPosition, minX, maxX, minY, maxY, footSoldierPosition), spaceOffset);
+            if (newUserAttackBox[0].equals(footSoldierPosition[0]) && newUserAttackBox[1].equals(footSoldierPosition[1])) {
+                System.out.println("      You have killed the foot soldier!");
+                footSoldierPosition = new Integer[]{-1, -1}; // remove foot soldier
+            }
+
+            drawScreen(createScreen(newUserPosition, minX, maxX, minY, maxY, footSoldierPosition), spaceOffset);
             drawSpace(spaceOffset); System.out.println("    ~Roguelike 2~");
             userStats.put("moves", userStats.get("moves") + 1);
             drawSpace(spaceOffset); System.out.println("    Moves: " + userStats.get("moves") + "/" + userStats.get("maxMoves"));
             drawSpace(spaceOffset); System.out.println("      Health: " + userStats.get("health"));
             // System.out.println(input);
-            drawSpace(spaceOffset); System.out.println(" User position: " + userStartPosition[0] + ", " + userStartPosition[1]);
+            drawSpace(spaceOffset); System.out.println(" User position: " + newUserPosition[0] + ", " + newUserPosition[1]);
             input = readUserInput(sc);
 
             if (userStats.get("moves") >= userStats.get("maxMoves")) { // run out of moves
@@ -85,6 +95,7 @@ public class Main {
             }
 
             turnCounter++;
+
         }
 
     }
@@ -94,38 +105,54 @@ public class Main {
         return userInput;
     }
 
-    public static Integer[] moveUser(String input, Integer[] userPosition, Integer userSpeed, Integer minX, Integer maxX, Integer minY, Integer maxY){
-        switch (input){
+    public static Integer[][] moveUser(String input, Integer[] userPosition, Integer userSpeed, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] userAttackBox){
+        switch (input) {
             case "w": // up
-                if (checkBounds(userPosition[0], userPosition[1] + userSpeed, minX, maxX, minY, maxY)){
+                if (checkBounds(userPosition[0], userPosition[1] + userSpeed, minX, maxX, minY, maxY)) {
                     userPosition[1] += userSpeed;
                 }
                 break;
             case "a": // left
-                if (checkBounds(userPosition[0] - userSpeed, userPosition[1], minX, maxX, minY, maxY)){
+                if (checkBounds(userPosition[0] - userSpeed, userPosition[1], minX, maxX, minY, maxY)) {
                     userPosition[0] -= userSpeed;
                 }
                 break;
             case "s": // down
-                if (checkBounds(userPosition[0], userPosition[1] - userSpeed, minX, maxX, minY, maxY)){
+                if (checkBounds(userPosition[0], userPosition[1] - userSpeed, minX, maxX, minY, maxY)) {
                     userPosition[1] -= userSpeed;
                 }
                 break;
             case "d": // right
-                if (checkBounds(userPosition[0] + userSpeed, userPosition[1], minX, maxX, minY, maxY)){
+                if (checkBounds(userPosition[0] + userSpeed, userPosition[1], minX, maxX, minY, maxY)) {
                     userPosition[0] += userSpeed;
                 }
+                break;
+            case "\u001B[A": // arrow up
+                userAttackBox[0] = userPosition[0];
+                userAttackBox[1] = userPosition[1] + 1;
+                break;
+            case "\u001B[B": // arrow down
+                userAttackBox[0] = userPosition[0];
+                userAttackBox[1] = userPosition[1] - 1; 
+                break;
+            case "\u001B[C": // arrow right
+                userAttackBox[0] = userPosition[0] + 1;
+                userAttackBox[1] = userPosition[1]; 
+                break;
+            case "\u001B[D": // arrow left
+                userAttackBox[0] = userPosition[0] - 1;
+                userAttackBox[1] = userPosition[1]; 
                 break;
             default:
                 System.out.println("Invalid input: " + input);
                 break;
         }
-        return userPosition;     
+        return new Integer[][]{userPosition, userAttackBox};
     }
 
-    public static String[] createScreen(Integer[] userStartPosition, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] footSoldierPosition){
-        Integer userX = userStartPosition[0];
-        Integer userY = userStartPosition[1];
+    public static String[] createScreen(Integer[] newUserPosition, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] footSoldierPosition){
+        Integer userX = newUserPosition[0];
+        Integer userY = newUserPosition[1];
         String[] screenBuffer = new String[10];
 
         for (int y = minY; y < maxY; y++) {
