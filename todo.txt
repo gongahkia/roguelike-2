@@ -1,3 +1,4 @@
+get rid of user attack from rendering on screen after one tick/move
 random room generation
 crafting system
 fog of war
