@@ -192,7 +192,8 @@ public class Main {
         }
     }
 
-    public static Integer[] moveFootSoldier(Integer[] footSoldierPosition, Integer speed, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] userPosition){
+    public static Integer[] moveFootSoldier(Integer[] footSoldierPosition, Integer speed, Integer minX, Integer maxX, Integer minY, Integer maxY, Integer[] userPosition){ // movement purely based on absolute distance from user
+
         Integer[] newPos = {footSoldierPosition[0], footSoldierPosition[1]};
 
         for (int i = 0; i < speed; i++) {
